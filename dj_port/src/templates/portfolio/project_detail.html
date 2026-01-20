@@ -1,0 +1,219 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-gray-50 font-sans min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-md z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <a href="/" class="font-bold text-xl text-gray-800 hover:text-blue-600 transition-colors">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Portfolio
+                </a>
+                <div class="font-bold text-xl text-gray-800">{{ project.title }}</div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 gradient-bg">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center text-white">
+                <div class="w-24 h-24 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-6 backdrop-blur-sm">
+                    <i class="{{ project.icon }} text-5xl text-white"></i>
+                </div>
+                <h1 class="text-5xl font-bold mb-4">{{ project.title }}</h1>
+                <p class="text-2xl mb-6 text-gray-200">{{ project.subtitle }}</p>
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    {% for tech in project.technologies %}
+                    <span class="bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
+                        {{ tech }}
+                    </span>
+                    {% endfor %}
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-sm">
+                    <div class="flex items-center">
+                        <i class="fas fa-calendar-alt mr-2"></i>
+                        <span>{{ project.period }}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-user-tie mr-2"></i>
+                        <span>{{ project.role }}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-users mr-2"></i>
+                        <span>{{ project.team_size }}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <span class="{% if project.status == 'In Progress' %}bg-yellow-500{% else %}bg-green-500{% endif %} px-3 py-1 rounded-full">
+                            {{ project.status }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Overview -->
+    <section class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-50 rounded-2xl p-8 shadow-lg">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Project Overview</h2>
+                <p class="text-gray-700 text-lg leading-relaxed">
+                    {{ project.full_description }}
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {% for feature in project.key_features %}
+                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <div class="flex items-start">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                            <i class="fas fa-check text-white"></i>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">{{ feature }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Highlights -->
+    <section class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Technical Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {% for highlight in project.technical_highlights %}
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-8 shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <i class="fas fa-star text-yellow-500 mr-3"></i>
+                        {{ highlight.title }}
+                    </h3>
+                    <p class="text-gray-700 leading-relaxed">{{ highlight.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges & Solutions -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Challenges & Solutions</h2>
+            <div class="space-y-6">
+                {% for item in project.challenges_solutions %}
+                <div class="bg-white rounded-xl p-8 shadow-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-bold text-red-600 mb-3 flex items-center">
+                                <i class="fas fa-exclamation-triangle mr-3"></i>
+                                Challenge
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">{{ item.challenge }}</p>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-green-600 mb-3 flex items-center">
+                                <i class="fas fa-lightbulb mr-3"></i>
+                                Solution
+                            </h3>
+                            <p class="text-gray-700 leading-relaxed">{{ item.solution }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes & Impact -->
+    <section class="py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Outcomes & Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {% for outcome in project.outcomes %}
+                <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 shadow-lg text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <i class="fas fa-trophy text-4xl text-green-600 mb-4"></i>
+                    <p class="text-gray-800 font-semibold leading-relaxed">{{ outcome }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Used -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Technologies Used</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                {% for tech in project.technologies %}
+                <div class="bg-white rounded-xl px-8 py-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                    <span class="text-gray-800 font-semibold text-lg">{{ tech }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold mb-4">Interested in Similar Projects?</h2>
+            <p class="text-xl mb-8 text-gray-200">
+                Let's discuss how I can help build scalable backend solutions for your needs.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/#contact" class="bg-yellow-400 text-gray-900 px-8 py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105">
+                    Get In Touch
+                </a>
+                <a href="/#projects" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300">
+                    View More Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Keerthika P</h3>
+                <p class="text-gray-400 mb-6">Django REST API Developer</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="mailto:keerthideveloper11@gmail.com" 
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/keerthika1121/" 
+                       target="_blank"
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://gitlab.com/Keerthika1103" 
+                       target="_blank"
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fab fa-gitlab"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-500">
+                        &copy; <span id="current-year"></span> Keerthika P. Built with Django and Tailwind CSS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script>
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
+{% endblock %}

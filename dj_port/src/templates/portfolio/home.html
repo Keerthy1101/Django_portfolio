@@ -1,0 +1,493 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-gray-50 font-sans">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-lg z-50 shadow-lg border-b border-gray-100 transition-all duration-300" id="main-nav">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-3 sm:py-4">
+                <!-- Logo with gradient text -->
+                <div class="font-bold text-xl sm:text-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 cursor-pointer logo-glow">
+                    Keerthika P
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    {% for item in nav_items %}
+                    <a href="{{ item.href }}" 
+                       data-section="{{ item.id }}"
+                       class="nav-link relative text-gray-700 font-medium text-base transition-colors duration-200 hover:text-blue-600">
+                        {{ item.name }}
+                        <span class="nav-underline absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300"></span>
+                    </a>
+                    {% endfor %}
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden relative w-10 h-10 flex items-center justify-center text-gray-700 hover:text-blue-600 focus:outline-none group">
+                    <div class="space-y-1.5">
+                        <span class="block w-6 h-0.5 bg-current transform transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-current transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-current transform transition-all duration-300"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 shadow-lg">
+            <div class="px-4 py-3 space-y-1">
+                {% for item in nav_items %}
+                <a href="{{ item.href }}" 
+                   data-section="{{ item.id }}"
+                   class="mobile-nav-link block px-4 py-3 text-gray-700 font-medium rounded-lg transition-colors duration-200 hover:text-blue-600 hover:bg-gray-50">
+                    {{ item.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center gradient-bg relative overflow-hidden pt-16 sm:pt-0">
+        <div class="absolute inset-0">
+            <div class="floating absolute top-10 sm:top-20 left-10 sm:left-20 w-12 sm:w-20 h-12 sm:h-20 bg-white/10 rounded-full"></div>
+            <div class="floating absolute top-20 sm:top-40 right-16 sm:right-32 w-10 sm:w-16 h-10 sm:h-16 bg-white/10 rounded-full floating-delay-2"></div>
+            <div class="floating absolute bottom-20 sm:bottom-40 left-16 sm:left-32 w-8 sm:w-12 h-8 sm:h-12 bg-white/10 rounded-full floating-delay-4"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="text-white text-center lg:text-left order-2 lg:order-1">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                        Hi, I'm <span class="text-yellow-300">Keerthika</span>
+                    </h1>
+                    <div class="text-lg sm:text-xl lg:text-2xl mb-4 sm:mb-6 h-8">
+                        <span id="typing-text" class="typing-animation overflow-hidden whitespace-nowrap inline-block"></span>
+                    </div>
+                    <p class="text-base sm:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-200 leading-relaxed px-4 lg:px-0">
+                        Passionate Django REST API Developer with expertise in building scalable backend systems and seamless API integrations.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 px-4 lg:px-0">
+                        <button data-section="contact" class="scroll-btn bg-yellow-400 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base">
+                            Get In Touch
+                        </button>
+                        <button data-section="projects" class="scroll-btn border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300 text-sm sm:text-base">
+                            View My Work
+                        </button>
+                    </div>
+                </div>
+                <div class="flex justify-center lg:justify-end order-1 lg:order-2">
+                    <div class="relative">
+                        <div class="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                            <span class="text-5xl sm:text-6xl lg:text-8xl text-white/80 font-bold">{ }</span>
+                        </div>
+                        <div class="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 bg-yellow-400 rounded-full flex items-center justify-center">
+                            <i class="fab fa-python text-lg sm:text-2xl text-gray-900"></i>
+                        </div>
+                        <div class="absolute -bottom-2 sm:-bottom-4 -left-2 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 bg-blue-500 rounded-full flex items-center justify-center">
+                            <i class="fab fa-js text-lg sm:text-2xl text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+                    Electronics and Communication Engineering graduate turned passionate backend developer, specializing in Django REST APIs and scalable web solutions.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <!-- Profile Photo Card -->
+                <div class="fade-in flex justify-center">
+                    <div class="relative group">
+                        <div class="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-500 border-4 border-blue-600">
+                            <img src="{% static 'images/profile.jpg' %}" 
+                                 alt="Keerthika P - Django REST API Developer" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-3 sm:-top-4 -left-3 sm:-left-4 w-16 sm:w-20 h-16 sm:h-20 bg-yellow-400 rounded-full opacity-20 group-hover:scale-125 transition-transform duration-500"></div>
+                        <div class="absolute -bottom-3 sm:-bottom-4 -right-3 sm:-right-4 w-20 sm:w-24 h-20 sm:h-24 bg-blue-600 rounded-full opacity-20 group-hover:scale-125 transition-transform duration-500"></div>
+                        
+                        <!-- Floating Tech Icons -->
+                        <div class="absolute -top-2 sm:-top-3 -right-2 sm:-right-3 w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-300">
+                            <i class="fab fa-python text-white text-xl sm:text-2xl"></i>
+                        </div>
+                        <div class="absolute -bottom-2 sm:-bottom-3 -left-2 sm:-left-3 w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-green-500 to-green-700 rounded-xl flex items-center justify-center shadow-lg group-hover:-rotate-12 transition-transform duration-300">
+                            <i class="fas fa-database text-white text-xl sm:text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in px-4 lg:px-0">
+                    <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 sm:mb-6">My Journey</h3>
+                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">
+                        I'm a Django REST API Developer at Chadura Tech Pvt. Ltd., where I've been building scalable backend solutions since August 2023. With a strong foundation in Electronics and Communication Engineering from Vetri Vinayaha College, I transitioned into software development driven by my passion for creating efficient, robust systems.
+                    </p>
+                    <p class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 leading-relaxed">
+                        My expertise lies in developing RESTful APIs, optimizing database performance, and creating seamless integrations between frontend and backend systems. I've successfully improved development efficiency by 30% through strategic API design and implementation.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                        <div class="flex items-center">
+                            <div class="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-blue-600 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm sm:text-base">Location</p>
+                                <p class="text-gray-600 text-xs sm:text-sm">Bengaluru, Karnataka</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-graduation-cap text-blue-600 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm sm:text-base">Education</p>
+                                <p class="text-gray-600 text-xs sm:text-sm">B.E. ECE (8.3 CGPA)</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-briefcase text-blue-600 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm sm:text-base">Experience</p>
+                                <p class="text-gray-600 text-xs sm:text-sm">1.5+ Years</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 sm:w-12 h-10 sm:h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-3 sm:mr-4 flex-shrink-0">
+                                <i class="fas fa-code text-blue-600 text-sm sm:text-base"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-gray-800 text-sm sm:text-base">Specialization</p>
+                                <p class="text-gray-600 text-xs sm:text-sm">Backend APIs</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievement Badges -->
+                    <div class="mt-6 sm:mt-8 flex flex-wrap gap-2 sm:gap-3">
+                        <div class="bg-blue-50 border border-blue-200 px-3 sm:px-4 py-2 rounded-lg">
+                            <span class="text-blue-700 font-semibold text-xs sm:text-sm">🚀 30% Efficiency Boost</span>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 px-3 sm:px-4 py-2 rounded-lg">
+                            <span class="text-green-700 font-semibold text-xs sm:text-sm">✅ 3+ Major Projects</span>
+                        </div>
+                        <div class="bg-purple-50 border border-purple-200 px-3 sm:px-4 py-2 rounded-lg">
+                            <span class="text-purple-700 font-semibold text-xs sm:text-sm">🎯 Django Expert</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Skills Section -->
+            <div class="mt-12 sm:mt-16 fade-in px-4 lg:px-0">
+                <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 sm:mb-8 text-center">Technical Skills</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                    {% for skill in skills %}
+                    <div>
+                        <div class="flex justify-between mb-2">
+                            <span class="font-medium text-gray-800 text-sm sm:text-base">{{ skill.name }}</span>
+                            <span class="text-gray-600 text-sm sm:text-base">{{ skill.level }}%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="skill-bar bg-gradient-to-r from-blue-600 to-blue-900 h-2 rounded-full" 
+                                 data-level="{{ skill.level }}" 
+                                 style="width: 0%"></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Work Experience</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-lg sm:text-xl text-gray-600">My professional journey in software development</p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-blue-600 hidden md:block"></div>
+
+                <div class="fade-in card-hover">
+                    <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:ml-20 relative">
+                        <div class="absolute -left-4 top-8 w-8 h-8 bg-blue-600 rounded-full hidden md:block"></div>
+                        <div class="flex flex-col mb-4">
+                            <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
+                                Django REST API Developer
+                            </h3>
+                            <span class="bg-blue-600 text-white px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium self-start">
+                                Aug 2023 - Present
+                            </span>
+                        </div>
+                        <h4 class="text-base sm:text-lg font-semibold text-gray-700 mb-4">
+                            Chadura Tech Pvt. Ltd. • Bengaluru, Karnataka
+                        </h4>
+
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <p class="text-sm sm:text-base text-gray-600">
+                                    Developed and maintained scalable RESTful APIs using Django REST Framework, enhancing overall backend performance and reliability
+                                </p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <p class="text-sm sm:text-base text-gray-600">
+                                    Created optimized database schemas and efficient query handling using Django ORM with PostgreSQL and MySQL
+                                </p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <p class="text-sm sm:text-base text-gray-600">
+                                    Collaborated with frontend teams (Vue.js/React.js) to integrate APIs, improving the speed of end-to-end development by 30%
+                                </p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <p class="text-sm sm:text-base text-gray-600">
+                                    Implemented JWT-based authentication and role-based access control for secure API endpoints
+                                </p>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-check-circle text-green-500 mt-1 mr-3 flex-shrink-0"></i>
+                                <p class="text-sm sm:text-base text-gray-600">
+                                    Enhanced server-side rendering and API performance with caching, pagination, and throttling strategies
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-12 sm:py-16 lg:py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-lg sm:text-xl text-gray-600">Showcasing my expertise in building scalable backend solutions</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                {% for project in projects %}
+                <a href="/project/{{ project.id }}/" class="block group">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover fade-in h-full transition-all duration-300 group-hover:shadow-2xl">
+                        <div class="p-5 sm:p-6">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-blue-900 rounded-lg flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <i class="{{ project.icon }} text-xl sm:text-2xl text-white"></i>
+                            </div>
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
+                                {{ project.title }}
+                            </h3>
+                            <p class="text-sm sm:text-base text-gray-600 mb-4 leading-relaxed">{{ project.description }}</p>
+                            <div class="flex flex-wrap gap-2 mb-4 sm:mb-6">
+                                {% for tech in project.technologies %}
+                                <span class="bg-gray-100 text-gray-700 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                                    {{ tech }}
+                                </span>
+                                {% endfor %}
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-blue-600 font-semibold text-xs sm:text-sm">{{ project.period }}</span>
+                                <span class="text-blue-600 font-semibold flex items-center group-hover:translate-x-2 transition-transform duration-300 text-xs sm:text-sm">
+                                    View Details
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 fade-in">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Technical Expertise</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+                <p class="text-lg sm:text-xl text-gray-600">Technologies and tools I work with</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                {% for category in skill_categories %}
+                <div class="bg-white rounded-xl shadow-lg p-5 sm:p-6 card-hover fade-in text-center">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-blue-900 rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <i class="{{ category.icon }} text-xl sm:text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-4">{{ category.title }}</h3>
+                    <div class="space-y-2">
+                        {% for skill in category.skills %}
+                        <div class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium">
+                            {{ skill }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold mb-4">Let's Connect</h2>
+                <div class="w-20 h-1 bg-amber-400 mx-auto mb-6"></div>
+                <p class="text-xl text-gray-300">Ready to collaborate on your next project?</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Get In Touch</h3>
+                    <p class="text-gray-300 mb-8 leading-relaxed">
+                        I'm always interested in hearing about new opportunities and exciting projects. Whether you're looking for a backend developer or want to discuss potential collaborations, feel free to reach out!
+                    </p>
+
+                    <div class="space-y-6 max-w-md mx-auto">
+                        <a href="mailto:keerthideveloper11@gmail.com" 
+                           class="flex items-center p-4 bg-gray-900 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-envelope-open-text text-white text-xl"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="font-semibold text-white">Email</p>
+                                <span class="text-amber-400 group-hover:text-amber-300 transition-colors">
+                                    keerthideveloper11@gmail.com
+                                </span>
+                            </div>
+                        </a>
+
+                        <a href="https://www.linkedin.com/in/keerthika1121/" 
+                           target="_blank"
+                           class="flex items-center p-4 bg-gray-900 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                            <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-linkedin-in text-white text-xl"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="font-semibold text-white">LinkedIn</p>
+                                <span class="text-amber-400 group-hover:text-amber-300 transition-colors">
+                                    Connect with me
+                                </span>
+                            </div>
+                        </a>
+
+                        <a href="https://gitlab.com/Keerthika1103" 
+                           target="_blank"
+                           class="flex items-center p-4 bg-gray-900 rounded-xl shadow-md hover:shadow-lg transition-all group">
+                            <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                                <i class="fab fa-gitlab text-white text-xl"></i>
+                            </div>
+                            <div class="flex flex-col">
+                                <p class="font-semibold text-white">GitLab</p>
+                                <span class="text-amber-400 group-hover:text-amber-300 transition-colors">
+                                    View my code
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-gray-800 rounded-xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Send a Message</h3>
+                        <form id="contact-form" class="space-y-6">
+                            {% csrf_token %}
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" 
+                                       id="name" 
+                                       name="name" 
+                                       required
+                                       class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white" 
+                                       placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" 
+                                       id="email" 
+                                       name="email" 
+                                       required
+                                       class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white" 
+                                       placeholder="your.email@example.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message</label>
+                                <textarea id="message" 
+                                          name="message" 
+                                          rows="5" 
+                                          required
+                                          class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none transition-colors text-white resize-none" 
+                                          placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full bg-amber-400 text-gray-900 px-6 py-3 rounded-lg font-semibold hover:bg-amber-300 transition-all duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                            <div id="form-message" class="hidden mt-4 p-4 rounded-lg"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">Keerthika P</h3>
+                <p class="text-gray-400 mb-6">Django REST API Developer</p>
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="mailto:keerthideveloper11@gmail.com" 
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/keerthika1121/" 
+                       target="_blank"
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://gitlab.com/Keerthika1103" 
+                       target="_blank"
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fab fa-gitlab"></i>
+                    </a>
+                    <a href="tel:+919361732539" 
+                       class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+                <div class="border-t border-gray-700 pt-8">
+                    <p class="text-gray-500">
+                        &copy; <span id="current-year"></span> Keerthika P. Built with Django and Tailwind CSS.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+{% endblock %}
